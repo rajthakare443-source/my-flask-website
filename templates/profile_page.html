@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile | Media Downloader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+    <style>
+        /* ===== TOP BLUE BAR ===== */
+        .top-bar {
+            width: 100%;
+            background: #1976d2;
+            color: #fff;
+            padding: 14px 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        /* ===== BODY ===== */
+        body {
+            background: linear-gradient(120deg, #007bff 0%, #00c6ff 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 60px; /* space for top bar */
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== PROFILE CARD ===== */
+        .profile-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px #0002;
+            max-width: 420px;
+            width: 100%;
+            padding: 36px 32px 28px;
+            margin: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-photo, .profile-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1976d2;
+            margin-bottom: 16px;
+            font-size: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f7f7fa;
+            color: #1976d2;
+        }
+
+        .profile-info {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 6px;
+            color: #1976d2;
+            font-size: 1.5em;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .photo-form {
+            margin-bottom: 18px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .photo-form label {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .photo-form input[type="file"] {
+            margin-bottom: 8px;
+        }
+
+        .photo-form button {
+            padding: 7px 18px;
+            border-radius: 5px;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .photo-form button:hover {
+            background: #0d5ca6;
+        }
+
+        .remove-btn {
+            background: #888;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 7px 18px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .remove-btn:hover {
+            background: #444;
+        }
+
+        .logout-btn {
+            padding: 10px 24px;
+            background: #c00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 18px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logout-btn:hover {
+            background: #900;
+        }
+
+        .home-btn {
+            background: #1976d2;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 22px 12px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        MULTI PLATFORM MEDIA DOWNLOADER
+    </div>
+
+    <!-- ===== PROFILE CARD ===== -->
+    <div class="profile-container">
+
+        {% if photo %}
+            <img src="{{ url_for('user_photo', filename=photo) }}" alt="Profile Photo" class="profile-photo">
+        {% else %}
+            <div class="profile-icon">
+                <i class="fa fa-user-circle"></i>
+            </div>
+        {% endif %}
+
+        <form class="photo-form" method="post" enctype="multipart/form-data">
+            <label for="photo"><b>Edit/Add Profile Photo:</b></label>
+            <input type="file" name="photo" id="photo" accept="image/*">
+            <button type="submit">
+                <i class="fa fa-upload"></i> Upload
+            </button>
+        </form>
+
+        {% if photo %}
+        <form method="post" style="margin-bottom:18px;">
+            <input type="hidden" name="remove_photo" value="1">
+            <button type="submit" class="remove-btn">
+                <i class="fa fa-trash"></i> Remove Photo
+            </button>
+        </form>
+        {% endif %}
+
+        <div class="profile-info">
+            <h2>{{ username }}</h2>
+            <p>Member since: {{ created_at[:10] }}</p>
+        </div>
+
+        <a class="logout-btn" href="{{ url_for('logout_user') }}">
+            <i class="fa fa-sign-out-alt"></i> Logout
+        </a>
+
+        <a class="logout-btn home-btn" href="/">
+            <i class="fa fa-home"></i> Home
+        </a>
+
+    </div>
+
+</body>
+</html>

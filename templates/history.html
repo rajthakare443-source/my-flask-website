@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Download History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 32px 40px 40px 40px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .nav {
+      margin-bottom: 24px;
+    }
+    .nav a {
+      color: #1976d2;
+      text-decoration: none;
+      margin-right: 18px;
+      font-weight: 500;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fafafa;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
+      color: #444;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .empty {
+      color: #888;
+      text-align: center;
+      padding: 32px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Download History</h2>
+  <div class="nav">
+    <a href="{{ url_for('index') }}">&#8592; Home</a>
+    <a href="{{ url_for('logout_user') }}">Logout</a>
+  </div>
+
+  {% if history and history|length > 0 %}
+  <table>
+    <tr>
+      <th>Platform</th>
+      <th>Source URL</th>
+      <th>File Name</th>
+      <th>Type</th>
+      <th>Downloaded At</th>
+    </tr>
+    {% for item in history %}
+    <tr>
+      <td>{{ item.platform or '-' }}</td>
+      <td>
+        {% if item.url %}
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">View</a>
+        {% else %}-{% endif %}
+      </td>
+      <td>
+        {% if item.filename and item.download_url %}
+          <a href="{{ item.download_url }}">{{ item.filename }}</a>
+        {% elif item.filename %}
+          {{ item.filename }}
+        {% else %}
+          -
+        {% endif %}
+      </td>
+      <td>{{ item.filetype or '-' }}</td>
+      <td>{{ item.downloaded_at or '-' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <div class="empty">No downloads found yet.</div>
+  {% endif %}
+</div>
+</body>
+</html>

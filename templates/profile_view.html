@@ -1,0 +1,26 @@
+<h2>Instagram Profile: {{ profile_name }}</h2>
+
+{% if files %}
+  <h3>Download Files</h3>
+  <ul>
+  {% for f in files %}
+    <li>
+      <a href="{{ url_for('download_file', filename=f) }}" download>
+        Download {{ f }}
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+
+  <button onclick="downloadAll()">Download All</button>
+{% else %}
+  <p>No media found.</p>
+{% endif %}
+
+<script>
+function downloadAll() {
+  document.querySelectorAll('a[download]').forEach((link, i) => {
+    setTimeout(() => link.click(), i * 800);
+  });
+}
+</script>

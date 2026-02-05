@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+<h2 style="text-align:center; font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:700; letter-spacing:0.5px; color:#007bff; font-size:2.1em;">Download Media</h2>
+<div class="cards" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+	<a href="/instagram" class="card insta" style="margin-bottom:20px;">
+		<i class="fa-brands fa-instagram"></i>
+		<h3>Instagram Downloader</h3>
+	</a>
+	<a href="/youtube" class="card yt">
+		<i class="fa-brands fa-youtube"></i>
+		<h3>YouTube Downloader</h3>
+	</a>
+</div>
+<div style="margin-top:40px; text-align:center;">
+	<h3 style="font-size:1.4em; margin-bottom:18px; font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:700; color:#222; letter-spacing:0.5px;"><span style="font-size:1.2em;">📥</span> SUPPORTED PLATFORMS</h3>
+	<div style="display:flex; flex-wrap:wrap; gap:32px; justify-content:center; align-items:center; font-size:1.1em;">
+		<div style="display:flex; flex-direction:column; align-items:center;">
+			<i class="fa-brands fa-instagram" style="font-size:2em; color:#e1306c;"></i>
+			<span style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:600; color:#e1306c; font-size:1.08em;">Instagram</span>
+		</div>
+		<div style="display:flex; flex-direction:column; align-items:center;">
+			<i class="fa-brands fa-youtube" style="font-size:2em; color:#ff0000;"></i>
+			<span style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:600; color:#ff0000; font-size:1.08em;">YouTube</span>
+		</div>
+		<div style="display:flex; flex-direction:column; align-items:center;">
+			<i class="fa-brands fa-facebook" style="font-size:2em; color:#1877f3;"></i>
+			<span style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:600; color:#1877f3; font-size:1.08em;">Facebook</span>
+		</div>
+		<div style="display:flex; flex-direction:column; align-items:center;">
+			<i class="fa-brands fa-x-twitter" style="font-size:2em; color:#000;"></i>
+			<span style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:600; color:#000; font-size:1.08em;">Twitter (X)</span>
+		</div>
+		<div style="display:flex; flex-direction:column; align-items:center;">
+			<i class="fa fa-globe" style="font-size:2em; color:#28a745;"></i>
+			<span style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:600; color:#28a745; font-size:1.08em;">Other public media platforms</span>
+		</div>
+	</div>
+</div>
+{% endblock %}

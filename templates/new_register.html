@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <style>
+        body { background: #f7f7fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .register-container { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px #0002; padding: 32px 28px; width: 100%; max-width: 350px; }
+        .register-container h2 { color: #28a745; text-align: center; margin-bottom: 18px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; margin-bottom: 6px; color: #333; font-weight: 500; }
+        .input-group input { width: 100%; padding: 10px; border: 1px solid #e0e0e0; border-radius: 6px; font-size: 1em; background: #f8faff; }
+        .register-btn { width: 100%; padding: 12px; background: #28a745; color: #fff; border: none; border-radius: 6px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 8px; }
+        .register-btn:hover { background: #1e7e34; }
+        .error, .message { text-align: center; margin-bottom: 12px; font-size: 1em; }
+        .error { color: #c00; }
+        .message { color: #080; }
+        .login-link { margin-top: 18px; text-align: center; font-size: 1em; }
+        .login-link a { color: #28a745; text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <form class="register-container" method="post">
+        <h2>Register</h2>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        {% if message %}<div class="message">{{ message }}</div>{% endif %}
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required autocomplete="username">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required autocomplete="new-password">
+        </div>
+        <div class="input-group">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" name="confirm" id="confirm" required autocomplete="new-password">
+        </div>
+        <button class="register-btn" type="submit">Register</button>
+        <div class="login-link">
+            Already have an account? <a href="{{ url_for('new_login') }}">Login</a>
+        </div>
+    </form>
+</body>
+</html>

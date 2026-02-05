@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}YouTube Downloader{% endblock %}
+
+
+{% block content %}
+
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:60vh;">
+	<h2 style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:700; color:#ff0000; letter-spacing:0.5px;">YouTube Downloader</h2>
+	<p style="font-size:1.1em; color:#444;">Download video (MP4) or audio (MP3). Choose quality below (4K if available).</p>
+		<div id="quality-msg" style="display:none; margin-bottom:18px; width:100%; max-width:400px;">
+			<div style="background:#ffeaea; color:#d32f2f; border-left:4px solid #d32f2f; padding:10px 16px; border-radius:6px; font-family:'Poppins','Segoe UI',Arial,sans-serif; font-size:1em;">NO QUALITY REQUIRED</div>
+		</div>
+	<form method="post" action="{{ url_for('youtube') }}" style="background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:32px 28px; width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center;">
+		<input type="text" name="url" placeholder="Paste YouTube URL here" required value="{{ url or '' }}" style="width:100%; max-width:320px; padding:12px 16px; border-radius:6px; border:1px solid #ccc; font-size:1.08em; margin-bottom:18px; font-family:'Poppins','Segoe UI',Arial,sans-serif;">
+		<div style="display:flex; gap:18px; width:100%; justify-content:center; margin-bottom:18px;">
+			<label style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:500;">Type:
+				<select name="type" id="type-select" style="padding:6px 10px; border-radius:4px; border:1px solid #ccc; font-size:1em;">
+					<option value="mp4" selected>MP4 (video)</option>
+					<option value="mp3">MP3 (audio)</option>
+				</select>
+			</label>
+			<label style="font-family:'Poppins','Segoe UI',Arial,sans-serif; font-weight:500;">Quality:
+				<select name="quality" style="padding:6px 10px; border-radius:4px; border:1px solid #ccc; font-size:1em;">
+					<option value="best">Best</option>
+					<option value="4k">4K</option>
+					<option value="2160">2160</option>
+					<option value="1080">1080</option>
+					<option value="720">720</option>
+					<option value="480">480</option>
+					<option value="360">360</option>
+					<option value="240">240</option>
+				</select>
+			</label>
+		</div>
+		<button type="submit" class="btn-download" style="width:100%; padding:12px; background:#ff0000; color:#fff; border:none; border-radius:6px; font-size:1.1em; font-weight:600; cursor:pointer; font-family:'Poppins','Segoe UI',Arial,sans-serif;"><i class="fa-brands fa-youtube"></i> Download</button>
+		<div id="quality-msg" style="display:none; margin-top:10px; width:100%;"><div style="background:#ffeaea; color:#d32f2f; border-left:4px solid #d32f2f; padding:10px 16px; border-radius:6px; font-family:'Poppins','Segoe UI',Arial,sans-serif; font-size:1em; text-align:left;">NO QUALITY REQUIRED</div></div>
+	</form>
+	<script>
+	  const typeSelect = document.getElementById('type-select');
+	  const qualityMsg = document.getElementById('quality-msg');
+			function checkType() {
+				if (typeSelect.value === 'mp3') {
+					qualityMsg.style.display = 'block';
+				} else {
+					qualityMsg.style.display = 'none';
+				}
+			}
+			typeSelect.addEventListener('change', checkType);
+			window.addEventListener('DOMContentLoaded', checkType);
+	</script>
+</div>
+{% endblock %}
+
+

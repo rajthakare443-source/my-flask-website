@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Instagram Profile: {{ profile.username }}</h2>
+<p><strong>Full name:</strong> {{ profile.full_name }}</p>
+<p><strong>Bio:</strong> {{ profile.biography }}</p>
+<p><strong>Followers:</strong> {{ profile.followers }}</p>
+<p><strong>Following:</strong> {{ profile.followees }}</p>
+<p><strong>Posts:</strong> {{ profile.mediacount }}</p>
+<p><strong>Private:</strong> {{ profile.is_private }}</p>
+{% endblock %}

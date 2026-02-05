@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Instagram Downloader{% endblock %}
+
+{% block content %}
+<div class="page-center" style="min-height:calc(10vh - 120px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
+
+	<h2>Instagram Downloader</h2>
+	<p>Download Instagram Reels, Posts & Videos</p>
+
+	{# show flash messages #}
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+		<div style="margin:8px 0;">
+		  {% for category, msg in messages %}
+			<div class="flash {{ category }}">{{ msg }}</div>
+		  {% endfor %}
+		</div>
+	  {% endif %}
+	{% endwith %}
+
+	<div class="download-box" style="width:100%; max-width:640px; margin-top:12px;">
+	    <form method="post" action="{{ url_for('instagram') }}" style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+	        <input type="text" name="url" placeholder="Paste Instagram Reel / Post URL here" required value="{{ url or '' }}" style="width:100%; padding:8px;">
+	        <div style="display:flex; gap:12px; align-items:center; justify-content:center;">
+	            <label><input type="radio" name="format" value="original" checked> Original</label>
+	            <label><input type="radio" name="format" value="mp3"> MP3</label>
+	        </div>
+	        <button type="submit" class="btn-download" style="padding:8px 16px;"><i class="fa-brands fa-instagram"></i> Download Post</button>
+	    </form>
+	</div>
+</div>
+{% endblock %}

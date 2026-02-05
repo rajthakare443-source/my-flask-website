@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="center">
+    <h2>Your Downloads</h2>
+    <p>
+      <a href="{{ url_for('index') }}">Home</a> |
+      <a href="{{ url_for('history') }}">History</a> |
+      <a href="{{ url_for('logout_user') }}">Logout</a>
+    </p>
+    <table border="1" cellpadding="6">
+      <tr><th>Platform</th><th>File</th><th>Time</th></tr>
+      {% for p,f,t in history %}
+        <tr><td>{{ p }}</td><td>{{ f }}</td><td>{{ t }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Instagram Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+  <div class="center"><h2>Login to Instagram</h2>
+    {% if message %}
+      <p style="color:darkred;">{{ message }}</p>
+      {% if details %}
+        <pre class="error-details" style="background:#f8f8f8;border:1px solid #ddd;padding:8px;color:#333;white-space:pre-wrap;">{{ details }}</pre>
+      {% endif %}
+    {% else %}
+      <p>Please enter your Instagram credentials to access private posts or profiles.</p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('insta_login') }}">
+      <label>Username: <input type="text" name="username" required value="{{ username or '' }}"></label><br><br>
+      <label>Password: <input type="password" name="password" required></label><br><br>
+      <input type="hidden" name="url" value="{{ url or '' }}">
+      <input type="hidden" name="next" value="{{ next or '' }}">
+      <button type="submit">Login & Download</button>
+    </form>
+    <p><a href="{{ url_for('instagram') }}">Back to Instagram tools</a></p>
+  </div>
+</body></html>

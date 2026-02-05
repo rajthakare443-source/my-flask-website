@@ -1,0 +1,124 @@
+
+    <meta charset="UTF-8">
+    <title>Login | Media Downloader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <style>
+        body {
+            background: linear-gradient(120deg, #007bff 0%, #00c6ff 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px #0002;
+            max-width: 370px;
+            width: 100%;
+            padding: 36px 32px 28px 32px;
+            margin: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .auth-container h2 {
+            color: #007bff;
+            margin-bottom: 18px;
+            font-weight: 700;
+            font-size: 2em;
+        }
+        .auth-container .icon {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            width: 100%;
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 500;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f8faff;
+            transition: border 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .login-btn:hover {
+            background: linear-gradient(90deg, #0056b3 60%, #009ec3 100%);
+        }
+        .error, .message {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+        .error { color: #c00; }
+        .message { color: #080; }
+        .register-link {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 1em;
+        }
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .auth-container { padding: 22px 8px 18px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <form class="auth-container" method="post">
+        <div class="icon"><i class="fa fa-sign-in-alt"></i></div>
+        <h2>Login</h2>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        {% if message %}<div class="message">{{ message }}</div>{% endif %}
+        <div class="input-group">
+            <label for="username"><i class="fa fa-user"></i> Username</label>
+            <input type="text" name="username" id="username" required autocomplete="username">
+        </div>
+        <div class="input-group">
+            <label for="password"><i class="fa fa-lock"></i> Password</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password">
+        </div>
+        <button class="login-btn" type="submit">Login</button>
+        <div class="register-link">
+            Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Files</title>
+    <style>
+        .media-list { display: flex; flex-wrap: wrap; gap: 20px; }
+        .media-item { border: 1px solid #ddd; padding: 10px; border-radius: 8px; width: 220px; text-align: center; }
+        .media-item img, .media-item video { max-width: 200px; max-height: 200px; display: block; margin: 0 auto 10px; }
+        .download-btn { display: inline-block; margin-top: 8px; padding: 6px 14px; background: #007bff; color: #fff; border: none; border-radius: 4px; text-decoration: none; }
+        .download-btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+<h2>Downloaded Files</h2>
+
+<div class="media-list">
+    {% for f in files %}
+        <div class="media-item">
+            {% set ext = f.split('.')[-1].lower() %}
+            {% if ext in ['jpg', 'jpeg', 'png', 'webp', 'gif'] %}
+                <img src="{{ url_for('download_file', filename=f) }}" alt="Image">
+            {% elif ext in ['mp4', 'mov', 'webm'] %}
+                <video controls>
+                    <source src="{{ url_for('download_file', filename=f) }}">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+            <a class="download-btn" href="{{ url_for('download_file', filename=f) }}" download>Download {{ f }}</a>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

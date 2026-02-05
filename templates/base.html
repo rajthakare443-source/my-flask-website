@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Media Downloader{% endblock %}</title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+    body { margin:0; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; background: #f7f7fa; }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #222;
+    }
+    .navbar .brand {
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        letter-spacing: 1px;
+        font-size: 1.6em;
+    }
+    .nav-links a, .sidebar a, .content, .topbar, .logo, .top-icons a {
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+    }
+    .sidebar a {
+        font-size: 1.08em;
+    }
+    .logo {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #007bff;
+        letter-spacing: 1px;
+    }
+    .nav-links a, .sidebar a {
+        transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .sidebar a:hover {
+        color: #007bff;
+    }
+    .logout-btn {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .new-register-btn {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    /* Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+    .navbar {
+        background: #fff; border-bottom: 1px solid #eee; padding: 0 24px; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        box-shadow: 0 2px 8px #0001;
+    }
+    .navbar .brand { font-size: 1.4em; color: #007bff; font-weight: bold; text-decoration: none; }
+    .navbar .nav-links { display: flex; gap: 18px; align-items: center; }
+    .navbar .nav-links a {
+        color: #333; text-decoration: none; font-size: 1em; padding: 8px 14px; border-radius: 4px;
+        transition: background 0.2s;
+    }
+    .navbar .nav-links a:hover, .navbar .nav-links .active {
+        background: #007bff; color: #fff;
+    }
+    .navbar .nav-links .profile {
+        background: #f0f0f8; color: #007bff; font-weight: bold;
+    }
+    .navbar .nav-links .profile:hover {
+        background: #007bff; color: #fff;
+    }
+    .navbar .nav-links .logout-btn {
+        background: #c00; color: #fff;
+    }
+    .navbar .nav-links .logout-btn:hover {
+        background: #900;
+    }
+</style>
+{% block head %}{% endblock %}
+</head>
+<body>
+    <div class="navbar">
+        <a class="brand" href="{{ url_for('index') }}"><i class="fa fa-cloud-download-alt"></i> Media Downloader</a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}"><i class="fa fa-home"></i> Home</a>
+            <a href="{{ url_for('instagram') }}"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="{{ url_for('youtube') }}"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            <a href="{{ url_for('history') }}"><i class="fa fa-history"></i> History</a>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('profile_page') }}" class="profile" title="Profile" style="display:inline-flex;align-items:center;"><i class="fa fa-user-circle fa-lg"></i></a>
+            {% else %}
+                <a href="{{ url_for('new_register') }}" class="new-register-btn"><i class="fa fa-user-plus"></i> New Register</a>
+                <a href="{{ url_for('logout') }}" class="logout-btn"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            {% endif %}
+        </div>
+    </div>
+    <div style="min-height:calc(100vh - 60px);">
+        <!-- ================= TOP NAVBAR ================= -->
+        <div class="topbar">
+        <div class="logo">MULTI PLATFORM MEDIA DOWNLODER</div>
+
+
+        <div class="top-icons">
+        <a href="/history"><i class="fa-solid fa-clock"></i></a>
+        <a href="/instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="/youtube"><i class="fa-brands fa-youtube"></i></a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('profile_page') }}" title="User Profile"><i class="fa-solid fa-user"></i></a>
+        {% else %}
+            <a href="{{ url_for('new_login') }}" title="Login/Register"><i class="fa-solid fa-user"></i></a>
+        {% endif %}
+        </div>
+        </div>
+
+
+        <!-- ================= MAIN LAYOUT ================= -->
+        <div class="layout">
+
+
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+        <a href="/"><i class="fa fa-home" style="color:#007bff; width:22px; text-align:center;"></i> Home</a>
+        <a href="/instagram"><i class="fa-brands fa-instagram" style="color:#e1306c; width:22px; text-align:center;"></i> Instagram Downloader</a>
+        <a href="/youtube"><i class="fa-brands fa-youtube" style="color:#ff0000; width:22px; text-align:center;"></i> YouTube Downloader</a>
+        <a href="/history"><i class="fa fa-history" style="color:#28a745; width:22px; text-align:center;"></i> History</a>
+        </div>
+
+
+        <!-- CENTER CONTENT -->
+        <div class="content">
+        {% block content %}{% endblock %}
+        </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

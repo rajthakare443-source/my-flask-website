@@ -1,0 +1,173 @@
+body { margin: 0; font-family: Arial; background: #f0f2f5; }
+
+
+.logo { font-size: 22px; font-weight: bold; }
+
+
+.top-icons a {
+color: white;
+margin-left: 15px;
+font-size: 20px;
+}
+
+
+.layout { display: flex; }
+
+
+.sidebar {
+width: 220px;
+background: white;
+padding: 15px;
+height: 100vh;
+}
+
+
+.sidebar a {
+display: block;
+padding: 10px;
+color: black;
+text-decoration: none;
+}
+
+
+.sidebar a:hover { background: #e4e6eb; }
+
+
+.content {
+flex: 1;
+padding: 20px;
+}
+
+
+.cards {
+display: flex;
+gap: 20px;
+}
+
+
+.card {
+width: 250px;
+background: white;
+padding: 30px;
+text-align: center;
+border-radius: 10px;
+text-decoration: none;
+color: black;
+}
+
+
+.card i { font-size: 50px; margin-bottom: 10px; }
+
+
+.insta i { color: #e1306c; }
+.yt i { color: red; }
+
+
+
+
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+}
+
+/* TOP BAR */
+.topbar {
+    background: #1877f2;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.top-icons a {
+    color: white;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background: white;
+    padding: 15px;
+    height: 100vh;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #e4e6eb;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    width: 250px;
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.card i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.insta i { color: #e1306c; }
+.yt i { color: red; }
+
+/* DOWNLOAD BOX */
+.download-box {
+    background: white;
+    padding: 30px;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.download-box input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.btn-download {
+    background: #e1306c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}

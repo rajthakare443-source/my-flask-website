@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Media Downloader{% endblock %}
+
+{% block content %}
+<div class="page-center" style="min-height:calc(100vh - 120px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
+    {% if user %}
+        <div style="margin-bottom:24px;">
+            {% if photo %}
+                <img src="{{ url_for('user_photo', filename=photo) }}" alt="Profile Photo" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:2px solid #007bff;">
+            {% else %}
+                <i class="fa fa-user-circle" style="font-size:100px; color:#007bff;"></i>
+            {% endif %}
+            <h2>Welcome, {{ user }}!</h2>
+        </div>
+        <div class="cards" style="display:flex; gap:20px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:16px;">
+            <!-- Instagram Card -->
+            <a href="{{ url_for('instagram') }}" class="card insta" style="text-decoration:none; background:#fff; border-radius:10px; box-shadow:0 2px 8px #0001; padding:24px 32px; min-width:180px; transition:box-shadow 0.2s;">
+                <i class="fa-brands fa-instagram" style="font-size:2em; color:#e1306c;"></i>
+                <h3 style="margin:12px 0 4px 0;">Instagram Downloader</h3>
+                <p style="color:#888;">Reels • Posts • Stories</p>
+            </a>
+            <!-- YouTube Card -->
+            <a href="{{ url_for('youtube') }}" class="card yt" style="text-decoration:none; background:#fff; border-radius:10px; box-shadow:0 2px 8px #0001; padding:24px 32px; min-width:180px; transition:box-shadow 0.2s;">
+                <i class="fa-brands fa-youtube" style="font-size:2em; color:#ff0000;"></i>
+                <h3 style="margin:12px 0 4px 0;">YouTube Downloader</h3>
+                <p style="color:#888;">MP4 Video • MP3 Audio</p>
+            </a>
+        </div>
+    {% else %}
+        <h2>Welcome to Media Downloader</h2>
+        <div style="margin: 24px 0; display: flex; gap: 20px; justify-content: center;">
+            <a href="{{ url_for('new_login') }}" style="background:#007bff; color:#fff; padding:14px 36px; border-radius:6px; text-decoration:none; font-size:1.2em;">
+                <i class="fa fa-sign-in-alt"></i> Login
+            </a>
+            <a href="{{ url_for('new_register') }}" style="background:#28a745; color:#fff; padding:14px 36px; border-radius:6px; text-decoration:none; font-size:1.2em;">
+                <i class="fa fa-user-plus"></i> Register
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
